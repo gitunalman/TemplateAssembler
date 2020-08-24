@@ -1,0 +1,40 @@
+
+Template.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000000c  08000000  08000000  00010000  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  20000000  0800000c  00020000  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  20000000  0800000c  00020000  2**0
+                  ALLOC
+  3 .ARM.attributes 00000021  00000000  00000000  00020000  2**0
+                  CONTENTS, READONLY
+  4 .debug_line   0000003a  00000000  00000000  00020021  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000026  00000000  00000000  0002005b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000014  00000000  00000000  00020081  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_aranges 00000020  00000000  00000000  00020098  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000004c  00000000  00000000  000200b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+08000000 <_start-0x8>:
+ 8000000:	20018000 	.word	0x20018000
+ 8000004:	08000009 	.word	0x08000009
+
+08000008 <_start>:
+///////////////////////////////////////////////////////////////////////////////
+
+_start:
+
+loop:
+	nop                         // No operation. Do nothing.
+ 8000008:	bf00      	nop
+	b loop                      // Jump to loop
+ 800000a:	e7fd      	b.n	8000008 <_start>
